@@ -5,31 +5,44 @@ Refactorizacion: simplificar la logica ->Evitar redundancias
 Refactorizacion: Facilitar las pruebas ->Automatizar/facilitar los valores de entrada.
 """
 #Funcion
-def rDia():
-    return
-def rMes():
-    return
-def rAnio():
-    return
-
-
+"""
+#Estas 3 funciones se quedan resumidas en solicitarNum(texto)
+def solicitarDia():
+    return int(input("Introduce un día del mes: "))
+def solicitarMes():
+    return int(input("Introduce un mes: "))
+def solicitarAnio():
+    return int(input("Introduce un año: "))
+"""
+def solicitarNum(texto):
+	return int(input(f"Introduce un {texto}: "))
+def mesNumericoATexto(numMes):
+	listaMeses = ["Enero","Febrero","Marzo","Abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
+	textoMes = listaMeses[numMes-1] # -1 es porque recoge enero en la lista como el numero 0, pero es el numero 1 en el mes y feb en el numero 2 entonces se lo restamos para que lo recoja 
+	#en el codigo
+	return textoMes
 
 
 #Codigo Principal
-d1 = int(input("Introduce un día del mes: "))
-m1 = int(input("Introduce un mes: "))
-a1 = int(input("Introduce un año: "))
+dia = solicitarNum("dia del mes")
+mesNumerico = solicitarNum("mes")
+mes = mesNumericoATexto(mesNumerico)
+mes = mesNumericoATexto(solicitarNum{"mes"}) 
+anio = solicitarNum("año")
 
-if m1 == "febrero" and d1 > 28:
-	print("No es valido")
-elif (m1 == "septiembre" or m1 == "noviembre" or m1 == "abril" or m1 == "junio")and d1 > 30:
-	print("No es valido")
-elif d1 > 31:
-	print("No es valido")
-
-if a1 > 2025:
-	print("No es valido")
-	
+esValido = True
+#Mejor preguntamos lo mas probable, en este caso el año
+if anio < 2025:
+	if mes == "febrero" and dia > 28:
+		esValido = False
+	elif (mes == "septiembre" or mes == "noviembre" or mes == "abril" or mes == "junio")and dia > 30:
+		esValido = False
+	elif dia > 31:
+		esValido = False
+else: 
+	esValido = False
+print (f"El mes {mes} es {mesNumericoATexto(mes)}")
+"""
 d2 = int(input("Introduce un día del mes: "))
 m2 = int(input("Introduce un mes: "))
 a2 = int(input("Introduce un año: "))
@@ -71,3 +84,4 @@ elif d4 > 31:
 	
 if a4 > 2025:
 	print("No es valido")
+"""
